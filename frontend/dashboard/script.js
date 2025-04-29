@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://sportzone-six.vercel.app/api";
 
 // Front - Index
 if (document.getElementById('productList')) {
@@ -26,13 +26,14 @@ if (document.getElementById('productList')) {
 if (document.getElementById('loginForm')) {
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = email.value;
-    const password = password.value;
+ 
+    const emailValue = email.value
+    const passwordValue = password.value
 
     const res = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email:emailValue, password:passwordValue })
     });
 
     const data = await res.json();
@@ -89,6 +90,11 @@ if (document.getElementById('adminProductList')) {
 
     loadProducts();
   });
+
+  const logout = ()=>{
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 
   window.deleteProduct = async (id) => {
     await fetch(`${API_URL}/products/${id}`, {

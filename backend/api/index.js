@@ -9,11 +9,11 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/products', require('./routes/productRoutes'));
+app.use('/api/auth', require('../routes/authRoutes'));
+app.use('/api/products', require('../routes/productRoutes'));
 
 // Error Handler
-const { errorHandler } = require('./middlewares/errorMiddleware');
+const { errorHandler } = require('../middlewares/errorMiddleware');
 app.use(errorHandler);
 
 // Server
